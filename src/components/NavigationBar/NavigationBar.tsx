@@ -15,7 +15,7 @@ const NavigationBar:React.FC<NavigationBarProps> = () => {
     return (
         <div className='flex px-2 sm:px-12 md:px-24 align-center justify-between'>
             <Link href='/' className='flex items-center justify-center h-24'>
-                <img src='/black_on_trans.png' alt='FightCode' className='h-full' />
+                <img src='/logo/black_on_trans.png' alt='FightCode' className='h-full' />
             </Link>
             <div className='flex items-center'> 
                 <button className='bg-buttons-color text-white px-2 py-1 sm:px-4 rounded-md text-sm font-medium

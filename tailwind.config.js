@@ -13,6 +13,8 @@ module.exports = {
 			colors: {
 				"buttons-color": "rgb(15, 98, 254)",
 				"buttons-color-s": "rgb(14, 84, 217)",
+				"sidebar-text-color": "rgb(33, 39, 42)",
+				"active-sidebar-color": "rgb(242, 242, 242)",
 				"dark-layer-1": "rgb(40,40,40)",
 				"dark-layer-2": "rgb(26,26,26)",
 				"dark-label-2": "rgba(239, 241, 246, 0.75)",
