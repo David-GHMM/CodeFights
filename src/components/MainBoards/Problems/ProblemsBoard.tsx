@@ -1,38 +1,65 @@
-import React from 'react';
+import React, { useState } from "react";
+import Image from "next/image";
 
-type ProblemsBoardProps = {};
+const ProblemsBoard = () => {
+  const [selectedLanguage, setSelectedLanguage] = useState("");
+  const [difficulty, setDifficulty] = useState("");
 
-const ProblemsBoard:React.FC<ProblemsBoardProps> = () => {
-    
-    return (
-        <div className="div-content">
-            <h1>Problems</h1>
-            <div className="options">
-                <div className="languages">
-                <h2>Choose language:</h2>
-                <div className="language-icons">
-                    <div className="language"><img src="python.png" alt="Python" />Python</div>
-                    <div className="language"><img src="cpp.png" alt="C++" />C++</div>
-                    <div className="language"><img src="csharp.png" alt="C#" />C#</div>
-                    <div className="language"><img src="java.png" alt="Java" />Java</div>
-                    <div className="language"><img src="javascript.png" alt="JavaScript" />JavaScript</div>
-                    <div className="language"><img src="typescript.png" alt="TypeScript" />TypeScript</div>
-                    <div className="language"><img src="php.png" alt="PHP" />PHP</div>
-                </div>
-                </div>
-                <div className="difficulty">
-                <h2>Choose difficulty:</h2>
-                <select>
-                    <option value="" disabled selected>Choose difficulty</option>
-                    <option value="easy">Easy</option>
-                    <option value="medium">Medium</option>
-                    <option value="hard">Hard</option>
-                </select>
-                </div>
-                <button className="compete-btn">COMPETE</button>
-            </div>
+  const languages = [
+    { id: "python", name: "Python", icon: "/python-icon.png" },
+    { id: "cpp", name: "C++", icon: "/cpp-icon.png" },
+    { id: "csharp", name: "C#", icon: "/csharp-icon.png" },
+    { id: "java", name: "Java", icon: "/java-icon.png" },
+    { id: "javascript", name: "JavaScript", icon: "/js-icon.png" },
+    { id: "typescript", name: "TypeScript", icon: "/ts-icon.png" },
+    { id: "php", name: "PHP", icon: "/php-icon.png" },
+  ];
+
+  return (
+    <div className="max-w-5xl mx-auto">
+      <h1 className="text-3xl font-bold mb-8">Problems</h1>
+
+      <div className="space-y-8">
+        <div>
+          <h2 className="text-xl mb-4">Choose language:</h2>
+          <div className="grid grid-cols-7 gap-4">
+            {languages.map((lang) => (
+              <button
+                key={lang.id}
+                className={`p-4 border rounded-lg hover:border-blue-500 ${
+                  selectedLanguage === lang.id
+                    ? "border-blue-500"
+                    : "border-gray-200"
+                }`}
+                onClick={() => setSelectedLanguage(lang.id)}
+              >
+                <Image src={lang.icon} alt={lang.name} width={48} height={48} />
+                <p className="mt-2 text-sm">{lang.name}</p>
+              </button>
+            ))}
+          </div>
         </div>
-    );
+
+        <div>
+          <h2 className="text-xl mb-4">Choose difficulty:</h2>
+          <select
+            value={difficulty}
+            onChange={(e) => setDifficulty(e.target.value)}
+            className="w-64 p-2 border border-gray-200 rounded-lg"
+          >
+            <option value="">Choose difficulty</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+
+        <button className="px-8 py-4 bg-blue-600 text-white rounded-full text-lg font-semibold">
+          COMPETE
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default ProblemsBoard;
