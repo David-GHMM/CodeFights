@@ -4,6 +4,7 @@ import { useAtom } from "jotai";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 
 type SignInProps = {};
 
@@ -34,12 +35,13 @@ const SignIn: React.FC<SignInProps> = () => {
       if (!curUser) return;
       router.push("/");
     } catch (error: any) {
-      alert(error.message);
+      toast.error(error.message, { position: "top-center", autoClose: 3000 });
     }
   };
 
   useEffect(() => {
-    if (error) alert(error.message);
+    if (error)
+      toast.error(error.message, { position: "top-center", autoClose: 3000 });
   }, [error]);
 
   return (

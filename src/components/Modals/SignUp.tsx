@@ -4,6 +4,7 @@ import { useAtom } from "jotai";
 import { useRouter } from "next/router";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 
 type SignUpProps = {};
 
@@ -32,6 +33,10 @@ const SignUp: React.FC<SignUpProps> = () => {
     if (!inputs.email || !inputs.password || !inputs.userName)
       return alert("Пожалуйста, заполните все поля!");
     try {
+      toast.loading("Creating your account", {
+        position: "top-center",
+        toastId: "loadingToast",
+      });
       const newUser = await createUserWithEmailAndPassword(
         inputs.email,
         inputs.password
@@ -39,7 +44,7 @@ const SignUp: React.FC<SignUpProps> = () => {
       if (!newUser) return;
       router.push("/");
     } catch (error: any) {
-      alert(error.message);
+      toast.error(error.message, { position: "top-center" });
     }
   };
 

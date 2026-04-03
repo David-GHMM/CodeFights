@@ -65,11 +65,14 @@ const SideBar: React.FC<SideBarProps> = ({
         {boards.map((item, index) => (
           <li
             key={item.name}
-            className={
-              selectedBoard === index
-                ? "size-fit w-[224px] h-[70px] px-[8px] py-[20px] bg-active-sidebar-color border-active-sidebar-color border-b-2 cursor-pointer"
-                : "size-fit w-[224px] h-[70px] px-[8px] py-[20px] hover:bg-active-sidebar-color border-[#F2F4F8] border-b-2 cursor-pointer"
-            }
+            className={`size-fit w-[224px] h-[70px] px-[8px] py-[20px] border-b-2 cursor-pointer 
+              ${
+                selectedBoard === index
+                  ? "bg-active-sidebar-color border-active-sidebar-color"
+                  : "hover:bg-active-sidebar-color border-[#F2F4F8]"
+              }
+              ${item.name === "Problems" && "border-t-2"}
+            `}
             onClick={() => {
               setselectedBoard(index);
             }}
